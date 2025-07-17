@@ -52,18 +52,26 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Updates (January 2025)
 
-### ✅ Enhanced Service Catalog (50+ Services)
-- Social Media: Facebook, Instagram, Twitter, LinkedIn, YouTube, TikTok, Pinterest
-- Communication: Slack, Discord, Microsoft Teams, Telegram, WhatsApp Business
-- Email: Gmail, Outlook, SendGrid, Mailchimp
-- E-commerce: Stripe, PayPal, Shopify, WooCommerce, Square
-- Productivity: Notion, Trello, Asana, Monday.com, Jira, ClickUp
-- Data & Analytics: Google Sheets, Airtable, Google Analytics, Mixpanel
-- CRM: Salesforce, HubSpot, Pipedrive, Zoho CRM
-- Development: GitHub, GitLab, Bitbucket
-- Storage: Google Drive, Dropbox, OneDrive, AWS S3
-- Marketing: Google Ads, Facebook Ads, Mailgun
-- AI: OpenAI, Anthropic Claude
+### ✅ Enhanced Service Catalog (100+ Services)
+- Social Media: Facebook, Instagram, Twitter, LinkedIn, YouTube, TikTok, Pinterest, Reddit, Snapchat
+- Communication: Slack, Twilio, Discord, Microsoft Teams, Telegram, WhatsApp Business, Zoom
+- Email: Gmail, Outlook, SendGrid, Mailchimp, Mailgun, Amazon SES
+- E-commerce: Stripe, PayPal, Shopify, WooCommerce, Square, Amazon, eBay, Etsy
+- Productivity: Notion, Trello, Asana, Monday.com, Jira, ClickUp, Todoist, Basecamp
+- Data & Analytics: Google Sheets, Airtable, Google Analytics, Mixpanel, Segment, Amplitude, Hotjar
+- CRM: Salesforce, HubSpot, Pipedrive, Zoho CRM, Microsoft Dynamics, Freshsales
+- Development: GitHub, GitLab, Bitbucket, Jenkins, Docker Hub
+- Storage: Google Drive, Dropbox, OneDrive, AWS S3, Box
+- AI: OpenAI, Anthropic Claude, Google Cloud AI, AWS AI Services, Hugging Face
+- Marketing: Google Ads, Facebook Ads, LinkedIn Ads, Twitter Ads, ActiveCampaign, Klaviyo
+- Support: Zendesk, Freshdesk, Intercom, ServiceNow
+- Finance: QuickBooks, Xero, FreshBooks, Wave Accounting
+- HR: BambooHR, Workday, Lever, Greenhouse
+- Calendar: Google Calendar, Calendly, Acuity Scheduling
+- Content: WordPress, Ghost, Medium, Contentful
+- Monitoring: DataDog, New Relic, Sentry
+- Survey: Typeform, SurveyMonkey, Google Forms
+- Time Tracking: Toggl, Harvest, RescueTime
 
 ### ✅ OpenRouter API Integration
 - Cost-effective AI workflow generation using Claude 3.5 Sonnet
