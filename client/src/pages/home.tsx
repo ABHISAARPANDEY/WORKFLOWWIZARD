@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { MonacoEditor } from '@/components/ui/monaco-editor';
 import { WorkflowVisualizer } from '@/components/workflow-visualizer';
+import { WorkflowAnimator } from '@/components/workflow-animator';
 import { ServiceIconWithColor } from '@/components/service-icons';
 import { useToast } from '@/hooks/use-toast';
 import { apiRequest } from '@/lib/queryClient';
@@ -44,6 +45,7 @@ export default function Home() {
   const [includeAuth, setIncludeAuth] = useState(false);
   const [includeErrorHandling, setIncludeErrorHandling] = useState(false);
   const [generatedWorkflow, setGeneratedWorkflow] = useState<WorkflowResponse | null>(null);
+  const [showAnimator, setShowAnimator] = useState(false);
 
   // Get example prompts
   const { data: examples = [] } = useQuery({
@@ -530,6 +532,14 @@ export default function Home() {
                           <CopyIcon className="w-4 h-4 mr-2" />
                           Copy to Clipboard
                         </Button>
+                        <Button
+                          variant="outline"
+                          className="border-secondary text-secondary hover:bg-secondary/10"
+                          onClick={() => setShowAnimator(true)}
+                        >
+                          <PlayIcon className="w-4 h-4 mr-2" />
+                          Simulate Workflow
+                        </Button>
                       </div>
 
                       {/* JSON Preview */}
@@ -656,6 +666,15 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Workflow Animator Modal */}
+      {generatedWorkflow && (
+        <WorkflowAnimator
+          workflow={generatedWorkflow}
+          isVisible={showAnimator}
+          onClose={() => setShowAnimator(false)}
+        />
+      )}
     </div>
   );
 }

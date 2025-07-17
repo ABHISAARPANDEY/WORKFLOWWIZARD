@@ -3,23 +3,29 @@ import type { WorkflowResponse } from '@shared/schema';
 import { servicesCatalog } from './servicesCatalog';
 
 export function generateWorkflowFromPrompt(prompt: string): WorkflowResponse {
-  // Enhanced local workflow generation with better service detection
+  // Enhanced local workflow generation with intelligent service detection and pattern matching
   const lowerPrompt = prompt.toLowerCase();
   
-  // Detect services mentioned in the prompt
-  const detectedServices = servicesCatalog.filter(service => 
-    lowerPrompt.includes(service.name.toLowerCase()) ||
-    service.nodeTypes.some(nodeType => lowerPrompt.includes(nodeType.split('.').pop()!.toLowerCase()))
-  );
+  // Advanced service detection with keywords and context
+  const detectedServices = servicesCatalog.filter(service => {
+    const serviceName = service.name.toLowerCase();
+    const serviceKeywords = [
+      serviceName,
+      ...service.nodeTypes.map(nodeType => nodeType.split('.').pop()!.toLowerCase()),
+      ...service.commonUseCases.map(useCase => useCase.toLowerCase())
+    ];
+    
+    return serviceKeywords.some(keyword => lowerPrompt.includes(keyword));
+  });
   
-  // Determine workflow type based on keywords
+  // Intelligent workflow type detection
   let workflowType = 'generic';
   let triggerType = 'Manual';
   let nodes: any[] = [];
   let connections: any = {};
   
-  // Create workflow based on detected patterns
-  if (lowerPrompt.includes('email') || lowerPrompt.includes('mail')) {
+  // Advanced pattern matching for different workflow types
+  if (lowerPrompt.includes('email') || lowerPrompt.includes('mail') || lowerPrompt.includes('notification')) {
     workflowType = 'email';
     triggerType = 'Webhook';
     
