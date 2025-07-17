@@ -82,17 +82,63 @@ export async function enhancePrompt(prompt: string): Promise<string> {
 }
 
 function enhancePromptLocally(prompt: string): string {
-  // Simple local enhancement - add common best practices
-  const enhancements = [
-    "Include proper error handling and validation",
-    "Add logging for debugging purposes",
-    "Consider rate limiting for API calls",
-    "Include authentication where necessary",
-    "Add data validation and sanitization",
-  ];
+  // Comprehensive local enhancement for production-ready workflows
+  const lowerPrompt = prompt.toLowerCase();
   
-  const randomEnhancement = enhancements[Math.floor(Math.random() * enhancements.length)];
-  return `${prompt}\n\nAdditional considerations: ${randomEnhancement}`;
+  // Detect workflow type and add specific enhancements
+  let enhancedPrompt = prompt;
+  
+  // Add technical specifications based on detected services
+  if (lowerPrompt.includes('email') || lowerPrompt.includes('mail')) {
+    enhancedPrompt += `\n\nEmail Integration Specifications:
+- Configure SMTP/API credentials for email service (Gmail, Outlook, SendGrid)
+- Include email template with personalized fields and branding
+- Add email validation and bounce handling
+- Implement delivery tracking and read receipts
+- Set up automated follow-up sequences based on recipient actions`;
+  }
+  
+  if (lowerPrompt.includes('slack') || lowerPrompt.includes('discord') || lowerPrompt.includes('teams')) {
+    enhancedPrompt += `\n\nTeam Communication Enhancements:
+- Configure channel-specific routing based on message type/priority
+- Add rich message formatting with buttons and interactive elements
+- Include user mention notifications for urgent items
+- Set up threaded conversations for complex discussions
+- Implement message scheduling and timezone awareness`;
+  }
+  
+  if (lowerPrompt.includes('shopify') || lowerPrompt.includes('stripe') || lowerPrompt.includes('paypal')) {
+    enhancedPrompt += `\n\nE-commerce Integration Requirements:
+- Implement webhook security validation and signature verification
+- Add comprehensive order status tracking and updates
+- Include inventory management and low-stock alerts
+- Set up refund and cancellation handling workflows
+- Add tax calculation and compliance reporting
+- Include fraud detection and risk assessment`;
+  }
+  
+  if (lowerPrompt.includes('social') || lowerPrompt.includes('facebook') || lowerPrompt.includes('instagram') || lowerPrompt.includes('twitter')) {
+    enhancedPrompt += `\n\nSocial Media Automation Enhancements:
+- Configure multi-platform posting with platform-specific formatting
+- Add content scheduling and optimal timing algorithms
+- Include hashtag management and trending analysis
+- Set up engagement tracking and response automation
+- Add content approval workflows and compliance checks
+- Include analytics and performance reporting`;
+  }
+  
+  // Add universal production-ready enhancements
+  enhancedPrompt += `\n\nProduction-Ready Implementation:
+- Error Handling: Implement comprehensive try-catch blocks with specific error codes and recovery strategies
+- Data Validation: Add field-level validation with proper sanitization and type checking
+- Security: Include authentication, authorization, and data encryption where applicable
+- Monitoring: Add logging, metrics collection, and alerting for system health
+- Performance: Implement rate limiting, caching, and request optimization
+- Scalability: Design for high-volume processing with queue management
+- Backup: Include data backup and recovery mechanisms for critical workflows
+- Testing: Add validation steps and test data processing before production deployment`;
+  
+  return enhancedPrompt;
 }
 
 export function getExamplePrompts(): string[] {

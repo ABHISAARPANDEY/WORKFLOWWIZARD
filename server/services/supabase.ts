@@ -3,11 +3,18 @@ import postgres from "postgres";
 import { users, workflows } from "@shared/schema";
 import { eq, desc } from "drizzle-orm";
 
-if (!process.env.DATABASE_URL) {
+// Supabase configuration
+const SUPABASE_URL = process.env.SUPABASE_URL || "https://vjjmukgeixvatrprxosi.supabase.co";
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZqam11a2dlaXh2YXRycHJ4b3NpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI2Nzk4NjMsImV4cCI6MjA2ODI1NTg2M30.oSnwlz38D17zBr2RZUkHbThIsZjRtQanBSpEnlTBvJM";
+
+// Construct DATABASE_URL if not provided
+const DATABASE_URL = process.env.DATABASE_URL || `postgresql://postgres:${SUPABASE_ANON_KEY}@db.vjjmukgeixvatrprxosi.supabase.co:5432/postgres`;
+
+if (!DATABASE_URL) {
   console.warn("DATABASE_URL not found. Using in-memory storage instead of Supabase.");
 }
 
-const client = process.env.DATABASE_URL ? postgres(process.env.DATABASE_URL) : null;
+const client = DATABASE_URL ? postgres(DATABASE_URL) : null;
 export const db = client ? drizzle(client) : null;
 
 export class SupabaseStorage {
@@ -70,4 +77,4 @@ export class SupabaseStorage {
   }
 }
 
-export const supabaseStorage = process.env.DATABASE_URL ? new SupabaseStorage() : null;
+export const supabaseStorage = DATABASE_URL ? new SupabaseStorage() : null;

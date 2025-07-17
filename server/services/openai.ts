@@ -36,20 +36,38 @@ export async function generateWorkflowFromPrompt(
 SUPPORTED SERVICES AND NODE TYPES:
 ${serviceList}
 
-Guidelines:
-- Generate a complete N8N workflow with proper node structure
-- Include realistic node IDs, names, types, and parameters
-- Use proper N8N node types from the supported services list above
-- Include proper connections between nodes
+WORKFLOW GENERATION REQUIREMENTS:
+- Generate a complete N8N workflow with proper node structure and realistic parameters
+- Use exact node types from the supported services list above
+- Include proper connections between nodes with correct data flow
 - Set realistic positions for nodes (starting from [250, 300] and spacing by 200px horizontally)
-- ${includeAuth ? "Include authentication setup where needed" : ""}
-- ${includeErrorHandling ? "Add error handling nodes and try-catch logic" : ""}
-- Support complex workflows with multiple services (Facebook, Instagram, Twitter, LinkedIn, etc.)
-- Handle both simple and complex automation scenarios
-- Provide clear setup instructions
-- Estimate setup time realistically
+- ${includeAuth ? "Include comprehensive authentication setup with proper credential configuration" : ""}
+- ${includeErrorHandling ? "Add robust error handling nodes, try-catch logic, and fallback mechanisms" : ""}
+- Support complex multi-service workflows with proper data transformation between services
+- Handle both simple triggers and complex conditional logic
+- Include data validation, sanitization, and security best practices
+- Add proper logging and monitoring capabilities
+- Provide detailed setup instructions with specific configuration steps
+- Estimate setup time realistically based on complexity and service requirements
 
-IMPORTANT: Use the exact node types from the supported services list above. Match services mentioned in the user's prompt to the correct node types.
+TECHNICAL ACCURACY REQUIREMENTS:
+- Use authentic N8N node types and parameter structures
+- Include proper field mappings and data transformations
+- Add realistic webhook URLs, API endpoints, and configuration values
+- Include proper error handling with specific error codes and messages
+- Add rate limiting and retry logic where appropriate
+- Include proper authentication flows and credential management
+- Add data validation and sanitization steps
+- Include monitoring and alerting mechanisms
+
+PRODUCTION READINESS CHECKLIST:
+- All nodes have proper error handling
+- Data validation at each step
+- Authentication properly configured
+- Rate limiting implemented
+- Logging and monitoring included
+- Fallback strategies defined
+- Security best practices followed
 
 Return a JSON object with this exact structure:
 {
@@ -95,21 +113,44 @@ export async function enhanceUserPrompt(prompt: string): Promise<string> {
   }
   
   try {
-    const systemPrompt = `You are an expert automation consultant with deep knowledge of 50+ services including Facebook, Instagram, Twitter, LinkedIn, Slack, Gmail, Stripe, Airtable, and many more.
+    const systemPrompt = `You are an expert N8N automation consultant with deep knowledge of 50+ services. Your task is to transform user prompts into comprehensive, production-ready automation specifications.
 
-Take the user's basic automation request and enhance it with:
-- More specific details about the automation flow
-- Suggested integration with relevant services from our 50+ supported platforms
-- Error handling scenarios and best practices
-- Security considerations and authentication requirements
-- Specific node types and configurations that would work well
-- Consider social media integrations, e-commerce workflows, productivity tools, and communication platforms
+SUPPORTED SERVICES & CATEGORIES:
+- Social Media: Facebook, Instagram, Twitter, LinkedIn, YouTube, TikTok, Pinterest
+- Communication: Slack, Discord, Microsoft Teams, Telegram, WhatsApp Business  
+- Email: Gmail, Outlook, SendGrid, Mailchimp, Mailgun
+- E-commerce: Stripe, PayPal, Shopify, WooCommerce, Square
+- Productivity: Notion, Trello, Asana, Monday.com, Jira, ClickUp
+- Data & Analytics: Google Sheets, Airtable, Google Analytics, Mixpanel
+- CRM: Salesforce, HubSpot, Pipedrive, Zoho CRM
+- Development: GitHub, GitLab, Bitbucket
+- Storage: Google Drive, Dropbox, OneDrive, AWS S3
+- Marketing: Google Ads, Facebook Ads
+- AI: OpenAI, Anthropic Claude
 
-SUPPORTED SERVICES: Facebook, Instagram, Twitter, LinkedIn, YouTube, Slack, Discord, Gmail, Stripe, PayPal, Shopify, Airtable, Google Sheets, Notion, Trello, GitHub, Salesforce, HubSpot, and 30+ more.
+ENHANCEMENT RULES:
+1. PRESERVE the original intent and core functionality - never change what the user actually wants
+2. EXPAND with specific technical details about data flow, triggers, and processing steps
+3. IDENTIFY and specify relevant services from the supported list above
+4. ADD comprehensive error handling, data validation, and security considerations
+5. INCLUDE specific field mappings, API endpoints, and configuration details
+6. SUGGEST complementary automations that enhance the primary workflow
+7. SPECIFY exact trigger conditions, data transformations, and output formats
+8. ADD monitoring, logging, and notification mechanisms
+9. INCLUDE rate limiting, retry logic, and fallback strategies
+10. PROVIDE detailed authentication and permission requirements
 
-Keep the core intent the same but make it more detailed, actionable, and comprehensive for creating a robust N8N workflow that leverages multiple services effectively.
+TRANSFORMATION APPROACH:
+- For simple prompts: Add detailed technical specifications and best practices
+- For complex prompts: Break down into logical steps with comprehensive error handling
+- For multi-service workflows: Specify exact integration points and data flow
+- Always include specific field names, API methods, and configuration parameters
 
-Return only the enhanced prompt text, no additional formatting.`;
+OUTPUT FORMAT: Return a comprehensive, technically detailed automation specification that maintains the original user intent while adding production-ready implementation details.
+
+EXAMPLE TRANSFORMATION:
+Input: "Send email when form submitted"
+Output: "Create a webhook-triggered N8N workflow that processes form submissions with the following specifications: 1) Webhook endpoint receives POST data with form fields (name, email, message, timestamp), 2) Data validation ensures required fields are present and email format is valid, 3) Conditional logic routes based on form type using IF node, 4) Email notification sent via SendGrid/SMTP with personalized template including form data, 5) Form data stored in Airtable/Google Sheets with automatic timestamp and unique ID generation, 6) Confirmation email sent to submitter with auto-reply template, 7) Slack notification to team channel with form summary, 8) Error handling for failed API calls with retry logic and fallback notification, 9) Rate limiting to prevent spam submissions, 10) Data sanitization and XSS protection for form inputs."`;
 
     const model = process.env.OPENROUTER_API_KEY ? "anthropic/claude-3.5-sonnet" : "gpt-4o";
     
@@ -117,9 +158,10 @@ Return only the enhanced prompt text, no additional formatting.`;
       model,
       messages: [
         { role: "system", content: systemPrompt },
-        { role: "user", content: prompt }
+        { role: "user", content: `Transform this automation request into a comprehensive, production-ready specification: "${prompt}"` }
       ],
-      temperature: 0.8,
+      temperature: 0.7,
+      max_tokens: 1500,
     });
 
     return response.choices[0].message.content!;
