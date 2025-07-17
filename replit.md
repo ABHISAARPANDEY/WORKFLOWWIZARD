@@ -50,11 +50,38 @@ Preferred communication style: Simple, everyday language.
 - **Development**: In-memory storage for development and testing
 - **Abstraction**: Interface-based storage layer for easy switching
 
+## Recent Updates (January 2025)
+
+### ✅ Enhanced Service Catalog (50+ Services)
+- Social Media: Facebook, Instagram, Twitter, LinkedIn, YouTube, TikTok, Pinterest
+- Communication: Slack, Discord, Microsoft Teams, Telegram, WhatsApp Business
+- Email: Gmail, Outlook, SendGrid, Mailchimp
+- E-commerce: Stripe, PayPal, Shopify, WooCommerce, Square
+- Productivity: Notion, Trello, Asana, Monday.com, Jira, ClickUp
+- Data & Analytics: Google Sheets, Airtable, Google Analytics, Mixpanel
+- CRM: Salesforce, HubSpot, Pipedrive, Zoho CRM
+- Development: GitHub, GitLab, Bitbucket
+- Storage: Google Drive, Dropbox, OneDrive, AWS S3
+- Marketing: Google Ads, Facebook Ads, Mailgun
+- AI: OpenAI, Anthropic Claude
+
+### ✅ OpenRouter API Integration
+- Cost-effective AI workflow generation using Claude 3.5 Sonnet
+- Intelligent prompt enhancement for better workflow results
+- Smart service detection and node type selection
+- Fallback to local templates when API unavailable
+
+### ✅ Database & Authentication
+- Supabase integration for user management
+- JWT-based authentication system
+- Workflow storage and retrieval
+- User dashboard for workflow management
+
 ## Data Flow
 
 1. **User Input**: User enters natural language description of desired automation
 2. **Authentication**: JWT token validation for authenticated users
-3. **AI Processing**: OpenAI API processes prompt and generates workflow JSON
+3. **AI Processing**: OpenRouter API (Claude 3.5 Sonnet) processes prompt and generates workflow JSON
 4. **Fallback Handling**: Local template system activates if AI fails
 5. **Database Storage**: Generated workflows stored with user association
 6. **Frontend Display**: Workflow visualized with setup instructions

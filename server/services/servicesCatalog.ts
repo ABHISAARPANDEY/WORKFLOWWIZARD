@@ -537,3 +537,16 @@ export function searchServices(query: string): ServiceDefinition[] {
     service.commonUseCases.some(useCase => useCase.toLowerCase().includes(lowerQuery))
   );
 }
+
+export function getAllCategories(): string[] {
+  const categories = new Set(servicesCatalog.map(service => service.category));
+  return Array.from(categories).sort();
+}
+
+export function getPopularServices(): ServiceDefinition[] {
+  // Return services with low setup complexity and common use cases
+  return servicesCatalog
+    .filter(service => service.setupComplexity === 'low' || service.commonUseCases.length > 2)
+    .slice(0, 12)
+    .sort((a, b) => a.name.localeCompare(b.name));
+}

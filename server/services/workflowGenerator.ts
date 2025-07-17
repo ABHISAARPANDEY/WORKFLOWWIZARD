@@ -1,7 +1,7 @@
 import { generateWorkflowFromPrompt, enhanceUserPrompt } from './openai';
 import { generateWorkflowFromPrompt as generateLocalWorkflow } from './localWorkflowGenerator';
 import { supabaseStorage } from './supabase';
-import { getExamplePrompts, getPopularNodeTypes } from './servicesCatalog';
+import { servicesCatalog } from './servicesCatalog';
 import type { GenerateWorkflowRequest, WorkflowResponse } from '@shared/schema';
 
 export async function generateWorkflow(
@@ -36,7 +36,7 @@ export async function generateWorkflow(
     // Store the workflow in our database if user is authenticated
     if (userId) {
       try {
-        const storedWorkflow = await supabaseStorage.createWorkflow({
+        const storedWorkflow = await supabaseStorage?.createWorkflow({
           userId,
           name: generatedWorkflow.name,
           description: generatedWorkflow.description,
@@ -49,7 +49,9 @@ export async function generateWorkflow(
           isPublic: false,
         });
         
-        generatedWorkflow.id = storedWorkflow.id;
+        if (storedWorkflow) {
+          generatedWorkflow.id = storedWorkflow.id;
+        }
       } catch (error) {
         console.error("Failed to store workflow:", error);
         // Continue without storing if storage fails
@@ -93,4 +95,22 @@ function enhancePromptLocally(prompt: string): string {
   return `${prompt}\n\nAdditional considerations: ${randomEnhancement}`;
 }
 
-export { getExamplePrompts, getPopularNodeTypes };
+export function getExamplePrompts(): string[] {
+  return [
+    "Send me an email whenever someone fills out my contact form on my website, and also create a new record in my Airtable database with their information",
+    "Post to my Instagram, Facebook, and Twitter accounts simultaneously whenever I publish a new blog post",
+    "Create a Slack notification when a new payment is received in Stripe, and update my Google Sheets with the transaction details",
+    "Send a welcome email series through Mailchimp when someone signs up for my newsletter, and add them to my CRM",
+    "Monitor my brand mentions on Twitter and automatically save them to a Google Drive folder with sentiment analysis",
+    "Create a Trello card when a new issue is reported in GitHub, and notify my team in Discord",
+    "Sync new Shopify orders to my inventory management system and send order confirmations via WhatsApp",
+    "Schedule social media posts across all platforms based on my content calendar in Notion"
+  ];
+}
+
+export function getPopularNodeTypes(): { name: string; type: string }[] {
+  return servicesCatalog.slice(0, 15).map(service => ({
+    name: service.name,
+    type: service.nodeTypes[0]
+  }));
+}
