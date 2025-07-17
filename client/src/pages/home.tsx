@@ -190,15 +190,14 @@ export default function Home() {
                 <NetworkIcon className="text-white w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">N8N Workflow Generator</h1>
-                <p className="text-xs text-gray-500">AI-Powered Automation</p>
+                <h1 className="text-xl font-bold text-gray-900">WorkFlow Wizard</h1>
+                <p className="text-xs text-gray-500">A Product By TechStac</p>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#" className="text-gray-700 hover:text-primary font-medium transition-colors">Home</a>
-              <a href="#" className="text-gray-700 hover:text-primary font-medium transition-colors">Templates</a>
-              <a href="#" className="text-gray-700 hover:text-primary font-medium transition-colors">Documentation</a>
-              <a href="#" className="text-gray-700 hover:text-primary font-medium transition-colors">Support</a>
+              <a href="https://techstac.netlify.app/automation" className="text-gray-700 hover:text-primary font-medium transition-colors">Templates</a>
+
             </nav>
             <div className="flex items-center space-x-4">
               {isAuthenticated ? (
@@ -246,7 +245,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Generate N8N Workflows with
+              Generate N8N Workflows with TechStac's
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 {' '}AI Magic
               </span>
@@ -627,7 +626,7 @@ export default function Home() {
                 <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center">
                   <NetworkIcon className="text-white w-5 h-5" />
                 </div>
-                <span className="text-lg font-bold text-gray-900">N8N Generator</span>
+                <span className="text-lg font-bold text-gray-900">WorkFlow Wizard</span>
               </div>
               <p className="text-gray-600 text-sm">
                 Create powerful automation workflows using simple English descriptions. No technical knowledge required.
@@ -637,32 +636,25 @@ export default function Home() {
               <h5 className="font-semibold text-gray-900 mb-3">Product</h5>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Templates</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">API</a></li>
+                <li><a href="https://techstac.netlify.app/automation" className="hover:text-primary transition-colors">Templates</a></li>
               </ul>
             </div>
             <div>
               <h5 className="font-semibold text-gray-900 mb-3">Resources</h5>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="#" className="hover:text-primary transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Examples</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Community</a></li>
+                <li><a href="https://techstac.netlify.app/free-tools" className="hover:text-primary transition-colors">Explore Other Tools</a></li>
+                <li><a href="https://techstac.netlify.app/blog" className="hover:text-primary transition-colors">Blog</a></li>
               </ul>
             </div>
             <div>
               <h5 className="font-semibold text-gray-900 mb-3">Support</h5>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><a href="#" className="hover:text-primary transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Contact Us</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Status</a></li>
-                <li><a href="#" className="hover:text-primary transition-colors">Privacy</a></li>
+                <li><a href="https://techstac.netlify.app/get-quote" className="hover:text-primary transition-colors">Contact Us</a></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-200 mt-8 pt-8 text-center text-sm text-gray-600">
-            <p>&copy; 2024 N8N Workflow Generator. All rights reserved.</p>
+            <p>&copy;2025 Invincible Young Technologies Pvt. All rights reserved.</p>
           </div>
         </div>
       </footer>
